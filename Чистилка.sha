@@ -1,0 +1,1331 @@
+Make(delphi)
+ver(4.05 build 186)
+Add(MainForm,2953706,21,105)
+{
+ Width=597
+ Height=344
+ Caption="ЙаЧистилко 1.3"
+ BorderStyle=1
+ Position=1
+}
+Add(Label,12430990,21,154)
+{
+ Left=10
+ Top=10
+ Width=223
+ Height=17
+ Caption="Простая чистилка, которой так не хватает."
+}
+Add(BitBtn,5300654,140,294)
+{
+ Left=10
+ Top=40
+ Width=240
+ Caption="Удалить кэш IE"
+ link(onClick,2670334:doRead,[(202,300)(202,321)])
+}
+Add(BitBtn,4623130,133,105)
+{
+ Left=10
+ Top=70
+ Width=240
+ Name="delTemp"
+ Caption="Удалить %temp%"
+ link(onClick,4891545:doCurrentDir,[(184,111)(184,97)])
+}
+Add(FileSearch,2325261,196,140)
+{
+ Include=2
+ Point(onOtherFiles)
+ link(onSearch,9762227:doDelete,[(240,146)(240,202)])
+ link(Dir,4891545:TempDir,[(209,128)(223,128)])
+}
+Add(DirTools,9762227,252,182)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ link(onOK,960795:doOn,[(296,188)(296,206)(9,206)(9,223)])
+}
+Add(FileSearch,980605,252,371)
+{
+ Dir="%LOCALAPPDATA%\Microsoft\Windows\Temporary Internet Files"
+ Include=2
+ Point(onOtherFiles)
+ link(onSearch,5649465:doDelete,[(312,377)(312,433)])
+ link(Dir,2670334:RData,[(265,359)(216,359)])
+}
+Add(DirTools,5649465,315,413)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ link(onOK,5538876:doOn,[(360,419)(360,284)(9,284)(9,265)])
+}
+Add(LED,5538876,21,245)
+{
+ Left=260
+ Top=40
+ ColorOn=65280
+ ColorOff=8421376
+ link(onChange,9070531:doEvent2,[(65,251)(65,139)])
+}
+Add(LED,960795,21,203)
+{
+ Left=260
+ Top=70
+ ColorOn=65280
+ ColorOff=8421376
+ link(onChange,9070531:doEvent1,[(59,215)(59,132)])
+}
+Add(StatusBar,4015575,21,56)
+{
+ Text="Ожидаю нажатия кнопки...."
+ Strings=#24:Файлов нет! Это чудесно!|18:Мусор вычищен нах!|0:|
+}
+Add(Hub,9070531,84,126)
+{
+ InCount=8
+ link(onEvent1,4015575:doIndexText,[(110,132)(110,100)(9,100)(9,69)])
+}
+Add(Button,7771174,21,315)
+{
+ Left=305
+ Top=280
+ Width=120
+ Caption="Об авторе"
+ link(onClick,1499095:doMessage,[])
+}
+Add(Button,11866088,21,364)
+{
+ Left=430
+ Top=280
+ Width=115
+ Caption="Выход"
+ link(onClick,2953706:doClose,[(9,370)(9,132)])
+}
+Add(Message,1499095,77,315)
+{
+ Message="(c) Lionovsky, 2017-2018\r\nСофтина написана сугубо для себя, и может содержать тыщи багов\r\n\r\n\r\n(!) Внимание - закрывайте браузеры во время чистки, иначе будет плохо. \r\nhttp://lionovsky.us\r\nlionovsky@lionovsky.ru"
+}
+Add(Dir,4891545,203,84)
+{
+ Point(HistoryDir)
+ link(onEnd,2325261:doSearch,[(253,90)(253,118)(184,118)(184,146)])
+}
+Add(Registry,2670334,210,315)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Cache"
+ link(onRead,980605:doSearch,[(247,321)(247,377)])
+}
+Add(BitBtn,9393844,140,469)
+{
+ Left=10
+ Top=100
+ Width=240
+ Name="delGoogle"
+ Caption="Удалить кэш Google Chrome"
+ link(onClick,4464897:doRead,[(261,475)(261,482)])
+}
+Add(FileSearch,5627613,350,560)
+{
+ Dir="%LOCALAPPDATA%\Google\Chrome\User Data\Default\Cache"
+ Include=2
+ Point(onOtherFiles)
+ link(onSearch,15168199:doDelete,[(410,566)(410,622)])
+ link(Dir,7691208:Result,[(363,534)(426,534)])
+}
+Add(DirTools,15168199,420,602)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ link(onOK,5504869:doWork2,[(457,608)(457,524)])
+}
+Add(LED,474854,23,419)
+{
+ Left=260
+ Top=100
+ ColorOn=65280
+ ColorOff=8421376
+ link(onChange,9070531:doEvent3,[(66,425)(66,146)])
+}
+Add(Registry,4464897,350,476)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,7691208:doStrCatDlm,[])
+}
+Add(StrCatDelim,7691208,420,476)
+{
+ Delimiter="\"
+ Str2="Google\Chrome\User Data\Default\Cache"
+ link(onStrCatDlm,5627613:doSearch,[(464,482)(464,524)(338,524)(338,566)])
+ link(Str1,4464897:RData,[(426,464)(391,464)(391,520)(356,520)])
+}
+Add(HubEx,5504869,371,518)
+{
+ Angle=2
+ link(onEvent,474854:doOn,[(11,524)(11,439)])
+}
+Add(BitBtn,14289898,130,599)
+{
+ Left=10
+ Top=130
+ Width=240
+ Name="delGoogle"
+ Caption="Удалить кэш Firefox"
+ link(onClick,10247878:doRead,[(182,605)(182,636)])
+}
+Add(Registry,10247878,203,630)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,8058016:doStrCatDlm,[(247,636)(247,657)])
+}
+Add(FileSearch,11498090,315,665)
+{
+ Include=1
+ Point(onOtherFiles)
+ Point(ShortName)
+ link(onSearch,10396695:doDelete,[(363,671)(363,699)])
+ link(Dir,8058016:Result,[(328,653)(296,653)(296,695)(265,695)])
+}
+Add(StrCatDelim,8058016,259,651)
+{
+ Delimiter="\"
+ Str2="Mozilla\Firefox\Profiles"
+ link(onStrCatDlm,11498090:doSearch,[(303,657)(303,671)])
+ link(Str1,10247878:RData,[(265,639)(237,639)(237,674)(209,674)])
+}
+Add(DirTools,10396695,378,679)
+{
+ FilesOnly=1
+ NoConfirmation=1
+ NoErrorUI=1
+ link(onOK,11023187:doOn,[(415,686)(538,686)(538,583)(8,583)(8,480)])
+}
+Add(LED,11023187,20,460)
+{
+ Left=260
+ Top=130
+ ColorOn=65280
+ ColorOff=8421376
+ link(onChange,9070531:doEvent4,[(64,466)(64,153)])
+}
+Add(BitBtn,7675773,131,733)
+{
+ Left=10
+ Top=160
+ Width=240
+ Name="delGoogle"
+ Caption="Удалить кэш Яндекс.Браузера"
+ link(onClick,14788798:doRead,[(260,739)(260,748)])
+}
+Add(BitBtn,3122196,476,763)
+{
+ Left=10
+ Top=190
+ Width=240
+ Name="delGoogle"
+ Caption="Удалить кэш Vivaldi"
+ link(onClick,869:doRead,[])
+}
+Add(BitBtn,15658505,319,935)
+{
+ Left=10
+ Top=220
+ Width=240
+ Name="delGoogle"
+ Caption="Удалить кэш Opera 12"
+ link(onClick,8955355:doRead,[(365,941)(365,944)])
+}
+Add(BitBtn,10415847,54,831)
+{
+ Left=10
+ Top=250
+ Width=240
+ Name="delGoogle"
+ Caption="Удалить кэш Opera 20 и выше"
+ link(onClick,15548581:doRead,[(96,837)(96,839)])
+}
+Add(FileSearch,3608223,280,826)
+{
+ Include=2
+ Point(onOtherFiles)
+ link(onSearch,3655214:doDelete,[(340,832)(340,888)])
+ link(Dir,2598238:Result,[(293,800)(356,800)])
+}
+Add(DirTools,3655214,350,868)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ link(onOK,12415689:doOn,[(394,874)(394,715)(9,715)(9,556)])
+}
+Add(Registry,14788798,280,742)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,2598238:doStrCatDlm,[])
+}
+Add(StrCatDelim,2598238,350,742)
+{
+ Delimiter="\"
+ Str2="Yandex\YandexBrowser\User Data\Default\Cache"
+ link(onStrCatDlm,3608223:doSearch,[(394,748)(394,790)(268,790)(268,832)])
+ link(Str1,14788798:RData,[(356,730)(321,730)(321,786)(286,786)])
+}
+Add(HubEx,1422246,392,798)
+{
+ Angle=2
+}
+Add(LED,12415689,21,536)
+{
+ Left=260
+ Top=160
+ ColorOn=65280
+ ColorOff=8421376
+ link(onChange,9070531:doEvent5,[(69,542)(69,160)])
+}
+Add(FileSearch,10371177,546,847)
+{
+ Include=2
+ Point(onOtherFiles)
+ link(onSearch,13387498:doDelete,[(606,853)(606,909)])
+ link(Dir,9473423:Result,[(559,821)(622,821)])
+}
+Add(DirTools,13387498,616,889)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ link(onOK,4978074:doOn,[(664,895)(664,722)(11,722)(11,613)])
+}
+Add(Registry,869,546,763)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,9473423:doStrCatDlm,[])
+}
+Add(StrCatDelim,9473423,616,763)
+{
+ Delimiter="\"
+ Str2="Vivaldi\User Data\Default\Cache"
+ link(onStrCatDlm,10371177:doSearch,[(660,769)(660,811)(534,811)(534,853)])
+ link(Str1,869:RData,[(622,751)(587,751)(587,807)(552,807)])
+}
+Add(HubEx,10066742,658,819)
+{
+ Angle=2
+}
+Add(LED,4978074,23,593)
+{
+ Left=260
+ Top=190
+ ColorOn=65280
+ ColorOff=8421376
+ link(onChange,9070531:doEvent6,[(69,599)(69,167)])
+}
+Add(FileSearch,15448130,105,917)
+{
+ Include=2
+ Point(onOtherFiles)
+ link(onSearch,11751183:doDelete,[(165,923)(165,979)])
+ link(Dir,1787513:Result,[(118,891)(181,891)])
+}
+Add(DirTools,11751183,175,959)
+{
+ FilesOnly=1
+ NoConfirmation=1
+ NoErrorUI=1
+ link(onOK,16625989:doOn,[(228,965)(228,811)(15,811)(15,699)])
+}
+Add(Registry,15548581,105,833)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,1787513:doStrCatDlm,[])
+}
+Add(StrCatDelim,1787513,175,833)
+{
+ Delimiter="\"
+ Str2="Opera Software\Opera Stable"
+ link(onStrCatDlm,15448130:doSearch,[(219,839)(219,881)(93,881)(93,923)])
+ link(Str1,15548581:RData,[(181,821)(146,821)(146,877)(111,877)])
+}
+Add(HubEx,8943888,217,889)
+{
+ Angle=2
+}
+Add(LED,16625989,27,679)
+{
+ Left=260
+ Top=250
+ ColorOn=65280
+ ColorOff=8421376
+ link(onChange,9070531:doEvent8,[(71,685)(71,181)])
+}
+Add(FileSearch,9896613,378,1022)
+{
+ Include=2
+ Point(onOtherFiles)
+ link(onSearch,13435685:doDelete,[(438,1028)(438,1084)])
+ link(Dir,13747310:Result,[(391,996)(454,996)])
+}
+Add(DirTools,13435685,448,1064)
+{
+ FilesOnly=1
+ NoConfirmation=1
+ NoErrorUI=1
+ link(onOK,2761081:doOn,[(492,1070)(492,862)(9,862)(9,654)])
+}
+Add(Registry,8955355,378,938)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,13747310:doStrCatDlm,[])
+}
+Add(StrCatDelim,13747310,448,938)
+{
+ Delimiter="\"
+ Str2="Opera\Opera\cache"
+ link(onStrCatDlm,9896613:doSearch,[(492,944)(492,986)(366,986)(366,1028)])
+ link(Str1,8955355:RData,[(454,926)(419,926)(419,982)(384,982)])
+}
+Add(HubEx,12591711,490,994)
+{
+ Angle=2
+}
+Add(LED,2761081,21,634)
+{
+ Left=260
+ Top=220
+ ColorOn=65280
+ ColorOff=8421376
+ link(onChange,9070531:doEvent7,[(69,640)(69,174)])
+}
+Add(BitBtn,8289264,469,105)
+{
+ Left=10
+ Top=280
+ Width=240
+ Name="delGoogle"
+ Caption="Подсчитать количество мусора"
+ link(onClick,15540330:doEvent1,[])
+}
+Add(Dir,4226113,553,91)
+{
+ Point(HistoryDir)
+ link(onEnd,9134554:doGetSize,[(600,97)(600,118)])
+}
+Add(DirTools,9134554,609,91)
+{
+ FilesOnly=1
+ NoConfirmation=1
+ NoErrorUI=1
+ Point(doGetSize)
+ link(onOK,9359372:doOperation,[])
+ link(Source,4226113:TempDir,[(615,79)(594,79)(594,135)(573,135)])
+}
+Add(Registry,8476102,553,154)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Cache"
+ link(onRead,10286070:doGetSize,[(597,160)(597,181)])
+}
+Add(Hub,15540330,518,105)
+{
+ OutCount=16
+ link(onEvent1,4226113:doCurrentDir,[(542,111)(542,104)])
+ link(onEvent2,8476102:doRead,[(542,118)(542,160)])
+ link(onEvent3,4087435:doRead,[(542,125)(542,223)])
+ link(onEvent4,2402055:doRead,[(546,132)(546,279)])
+ link(onEvent5,15859282:doRead,[(546,139)(546,356)])
+ link(onEvent6,4559938:doRead,[(546,146)(546,426)])
+ link(onEvent7,2769123:doRead,[(546,153)(546,489)])
+ link(onEvent8,16410965:doRead,[(546,160)(546,552)])
+ link(onEvent9,14324752:doRead,[(732,167)(732,118)])
+ link(onEvent10,2140315:doRead,[(732,174)(732,223)])
+ link(onEvent11,6367624:doRead,[(735,181)(735,419)])
+ link(onEvent12,4514549:doRead,[(738,188)(738,594)])
+ link(onEvent13,14787398:doRead,[(735,195)(735,685)])
+ link(onEvent14,11148332:doRead,[(738,202)(738,769)])
+ link(onEvent15,6583177:doRead,[(746,209)(746,839)])
+ link(onEvent16,6373763:doRead,[(749,216)(749,902)])
+}
+Add(EventFromData,5519305,693,154)
+{
+}
+Add(DirTools,10286070,637,154)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ Point(doGetSize)
+ link(onOK,5519305:doData,[])
+}
+Add(Registry,4087435,553,217)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,13368375:doStrCatDlm,[])
+}
+Add(StrCatDelim,13368375,623,217)
+{
+ Delimiter="\"
+ Str2="Google\Chrome\User Data\Default\Cache"
+ link(onStrCatDlm,12868012:doGetSize,[(674,223)(674,244)])
+ link(Str1,4087435:RData,[(629,205)(594,205)(594,261)(559,261)])
+}
+Add(Registry,2402055,560,273)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,16432475:doStrCatDlm,[(604,279)(604,300)])
+}
+Add(StrCatDelim,16432475,616,294)
+{
+ Delimiter="\"
+ Str2="Mozilla\Firefox\Profiles"
+ link(onStrCatDlm,567017:doGetSize,[(670,300)(670,321)])
+ link(Str1,2402055:RData,[(622,282)(594,282)(594,317)(566,317)])
+}
+Add(Registry,15859282,560,350)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,4303302:doStrCatDlm,[])
+}
+Add(StrCatDelim,4303302,630,350)
+{
+ Delimiter="\"
+ Str2="Yandex\YandexBrowser\User Data\Default\Cache"
+ link(onStrCatDlm,8522702:doGetSize,[(678,356)(678,377)])
+ link(Str1,15859282:RData,[(636,338)(601,338)(601,394)(566,394)])
+}
+Add(Registry,4559938,560,420)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,2346671:doStrCatDlm,[])
+}
+Add(StrCatDelim,2346671,630,420)
+{
+ Delimiter="\"
+ Str2="Opera Software\Opera Stable"
+ link(onStrCatDlm,1655244:doGetSize,[(678,426)(678,447)])
+ link(Str1,4559938:RData,[(636,408)(601,408)(601,464)(566,464)])
+}
+Add(Registry,2769123,560,483)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,10048077:doStrCatDlm,[])
+}
+Add(StrCatDelim,10048077,630,483)
+{
+ Delimiter="\"
+ Str2="Opera\Opera\cache"
+ link(onStrCatDlm,16683864:doGetSize,[(678,489)(678,510)])
+ link(Str1,2769123:RData,[(636,471)(601,471)(601,527)(566,527)])
+}
+Add(Registry,16410965,560,546)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,8809536:doStrCatDlm,[])
+}
+Add(StrCatDelim,8809536,630,546)
+{
+ Delimiter="\"
+ Str2="Vivaldi\User Data\Default\Cache"
+ link(onStrCatDlm,10996980:doGetSize,[(678,552)(678,573)])
+ link(Str1,16410965:RData,[(636,534)(601,534)(601,590)(566,590)])
+}
+Add(DirTools,12868012,693,217)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ Point(doGetSize)
+ link(onOK,7906936:doData,[])
+}
+Add(DirTools,567017,693,294)
+{
+ FilesOnly=1
+ NoConfirmation=1
+ NoErrorUI=1
+ Point(doGetSize)
+ link(onOK,5920079:doData,[])
+}
+Add(DirTools,8522702,693,350)
+{
+ FilesOnly=1
+ NoConfirmation=1
+ NoErrorUI=1
+ Point(doGetSize)
+ link(onOK,4520915:doData,[])
+}
+Add(DirTools,1655244,693,420)
+{
+ FilesOnly=1
+ NoConfirmation=1
+ NoErrorUI=1
+ Point(doGetSize)
+ link(onOK,2144780:doData,[])
+}
+Add(DirTools,16683864,693,483)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ Point(doGetSize)
+ link(onOK,11826527:doData,[])
+}
+Add(DirTools,10996980,693,546)
+{
+ FilesOnly=1
+ NoConfirmation=1
+ NoErrorUI=1
+ Point(doGetSize)
+ link(onOK,13566723:doData,[])
+}
+Add(EventFromData,7906936,749,217)
+{
+}
+Add(EventFromData,5920079,749,294)
+{
+}
+Add(EventFromData,4520915,749,350)
+{
+}
+Add(EventFromData,2144780,749,420)
+{
+}
+Add(EventFromData,11826527,749,483)
+{
+}
+Add(EventFromData,13566723,749,546)
+{
+}
+Add(Math,9359372,798,91)
+{
+ link(onResult,1298896:doOperation,[(842,97)(842,129)(786,129)(786,160)])
+ link(Op2,5519305:GetData,[(811,79)(755,79)(755,198)(699,198)])
+}
+Add(Math,1298896,798,154)
+{
+ link(onResult,3815782:doOperation,[(842,160)(842,197)(792,197)(792,223)])
+ link(Op2,7906936:GetData,[(811,142)(783,142)(783,261)(755,261)])
+}
+Add(Math,3815782,798,217)
+{
+ link(onResult,12200231:doOperation,[(842,223)(842,261)(786,261)(786,300)])
+ link(Op2,5920079:GetData,[(811,205)(783,205)(783,338)(755,338)])
+}
+Add(Math,12200231,798,294)
+{
+ link(onResult,2799889:doOperation,[(842,300)(842,328)(786,328)(786,356)])
+ link(Op2,4520915:GetData,[(811,282)(783,282)(783,394)(755,394)])
+}
+Add(Math,2799889,798,350)
+{
+ link(onResult,15479485:doWork2,[(842,356)(842,391)])
+ link(Op2,2144780:GetData,[(811,338)(783,338)(783,464)(755,464)])
+}
+Add(Math,4750934,798,420)
+{
+ link(onResult,12907827:doOperation,[(842,426)(842,458)(786,458)(786,489)])
+ link(Op2,11826527:GetData,[(811,408)(783,408)(783,527)(755,527)])
+}
+Add(Math,12907827,798,483)
+{
+ link(onResult,8007184:doOperation,[(913,483)(913,48)])
+ link(Op2,13566723:GetData,[(811,471)(783,471)(783,590)(755,590)])
+}
+Add(Math,10388341,770,875)
+{
+ OpType=3
+ Op2=1048576
+ ResultType=0
+ link(onResult,16566103:doStrCatDlm,[])
+}
+Add(HubEx,15479485,812,385)
+{
+ Angle=2
+ link(onEvent,4750934:doOperation,[(786,391)(786,426)])
+}
+Add(StrCatDelim,16566103,833,875)
+{
+ Delimiter="  "
+ Str1="У вас на компьютере "
+ Str2=" мб мусора."
+ Point(Delimiter)
+ link(onStrCatDlm,8289264:doCaption,[(891,874)(891,363)(457,363)(457,111)])
+ link(Delimiter,10388341:Result,[(853,863)(815,863)(815,919)(776,919)])
+}
+Add(BitBtn,7984776,1285,88)
+{
+ Left=305
+ Top=40
+ Width=240
+ Caption="Удалить куки IE"
+ link(onClick,1816279:doRead,[(1334,94)(1334,97)])
+}
+Add(LED,12553898,1234,90)
+{
+ Left=555
+ Top=40
+ ColorOn=65280
+ ColorOff=8421376
+}
+Add(BitBtn,2471896,1293,264)
+{
+ Left=305
+ Top=70
+ Width=240
+ Caption="Очистить список последних документов"
+ link(onClick,3443549:doRead,[(1335,270)(1335,272)])
+}
+Add(LED,16279634,1240,268)
+{
+ Left=555
+ Top=70
+ ColorOn=65280
+ ColorOff=8421376
+}
+Add(FileSearch,11376537,1393,147)
+{
+ Include=2
+ Point(onOtherFiles)
+ link(onSearch,11781229:doDelete,[(1453,153)(1453,209)])
+ link(Dir,1816279:RData,[(1406,135)(1357,135)])
+}
+Add(DirTools,11781229,1456,189)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ link(onOK,12553898:doOn,[(1500,195)(1500,153)(1222,153)(1222,110)])
+}
+Add(Registry,1816279,1351,91)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Cookies"
+ link(onRead,11376537:doSearch,[(1388,97)(1388,153)])
+}
+Add(FileSearch,1826366,1386,322)
+{
+ Include=2
+ Point(onOtherFiles)
+ link(onSearch,15600613:doDelete,[(1446,328)(1446,384)])
+ link(Dir,3443549:RData,[(1399,310)(1350,310)])
+}
+Add(DirTools,15600613,1449,364)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ link(onOK,16279634:doOn,[(1493,370)(1493,329)(1228,329)(1228,288)])
+}
+Add(Registry,3443549,1344,266)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Recent"
+ link(onRead,1826366:doSearch,[(1381,272)(1381,328)])
+}
+Add(BitBtn,1433785,1281,420)
+{
+ Left=305
+ Top=100
+ Width=240
+ Caption="Удалить куки Google Chrome"
+ link(onClick,6545892:doRead,[(1332,426)(1332,440)])
+}
+Add(BitBtn,8573846,1285,564)
+{
+ Left=305
+ Top=130
+ Width=240
+ Caption="Удалить куки Firefox"
+ link(onClick,2074134:doRead,[(1327,570)(1327,587)])
+}
+Add(LED,9259595,1236,421)
+{
+ Left=555
+ Top=100
+ ColorOn=65280
+ ColorOff=8421376
+}
+Add(LED,8766919,1237,566)
+{
+ Left=555
+ Top=130
+ ColorOn=65280
+ ColorOff=8421376
+}
+Add(DirTools,2507204,1428,525)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ link(onOK,9259595:doOn,[(1492,531)(1492,504)(1224,504)(1224,441)])
+}
+Add(Registry,6545892,1351,434)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,9219894:doStrCatDlm,[])
+}
+Add(StrCatDelim,9219894,1421,434)
+{
+ Delimiter="\"
+ Str2="Google\Chrome\User Data\Default\Cookies"
+ link(onStrCatDlm,2507204:doDelete,[(1465,440)(1465,510)(1409,510)(1409,545)])
+ link(Str1,6545892:RData,[(1427,422)(1392,422)(1392,478)(1357,478)])
+}
+Add(Registry,2074134,1337,581)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="AppData"
+ link(onRead,1962834:doStrCatDlm,[])
+}
+Add(DirTools,2263345,1554,588)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ link(onOK,8766919:doOn,[(1600,641)(1600,643)(1226,643)(1226,586)])
+ link(Source,8906450:Result,[(1560,576)(1536,576)(1536,632)(1511,632)])
+}
+Add(FileSearch,10767430,1442,588)
+{
+ SubDir=1
+ Include=2
+ Point(onOtherFiles)
+ link(onSearch,8906450:doStrCatDlm,[])
+ link(Ext,1962834:Result,[(1448,576)(1420,576)(1420,625)(1392,625)])
+}
+Add(StrCatDelim,1962834,1386,581)
+{
+ Delimiter="\"
+ Str2="Mozilla\Firefox\Profiles"
+ link(onStrCatDlm,10767430:doSearch,[(1430,587)(1430,594)])
+ link(Str1,2074134:RData,[(1392,569)(1368,569)(1368,625)(1343,625)])
+}
+Add(StrCatDelim,8906450,1505,588)
+{
+ Delimiter="\"
+ Str2="cookies.sqlite"
+ link(onStrCatDlm,2263345:doDelete,[(1545,594)(1545,608)])
+}
+Add(BitBtn,13445541,1286,684)
+{
+ Left=305
+ Top=160
+ Width=240
+ Caption="Удалить куки Яндекс.Браузера"
+ link(onClick,13835840:doRead,[(1328,690)(1328,692)])
+}
+Add(BitBtn,7884389,1288,770)
+{
+ Left=305
+ Top=190
+ Width=240
+ Caption="Удалить куки Vivaldi"
+ link(onClick,8236425:doRead,[])
+}
+Add(BitBtn,3196765,1292,830)
+{
+ Left=305
+ Top=220
+ Width=240
+ Caption="Удалить куки Opera 12"
+ link(onClick,16380166:doRead,[(1338,836)(1338,839)])
+}
+Add(BitBtn,15579702,1293,894)
+{
+ Left=305
+ Top=250
+ Width=240
+ Caption="Удалить куки Opera 20 и выше"
+ link(onClick,10890540:doRead,[(1341,900)(1341,916)])
+}
+Add(LED,12940934,1238,681)
+{
+ Left=555
+ Top=160
+ ColorOn=65280
+ ColorOff=8421376
+}
+Add(DirTools,6384252,1463,686)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ link(onOK,12940934:doOn,[(1507,692)(1507,696)(1226,696)(1226,701)])
+}
+Add(Registry,13835840,1337,686)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,6496471:doStrCatDlm,[])
+}
+Add(StrCatDelim,6496471,1407,686)
+{
+ Delimiter="\"
+ Str2="Yandex\YandexBrowser\User Data\Default\Cookies"
+ link(onStrCatDlm,6384252:doDelete,[(1451,692)(1451,709)(1455,709)(1455,706)])
+ link(Str1,13835840:RData,[(1413,674)(1378,674)(1378,730)(1343,730)])
+}
+Add(HubEx,15318175,1358,728)
+{
+ Angle=2
+}
+Add(DirTools,6349224,1463,770)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ link(onOK,9005379:doOn,[(1507,776)(1507,784)(1227,784)(1227,791)])
+}
+Add(Registry,8236425,1337,770)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,4183667:doStrCatDlm,[])
+}
+Add(StrCatDelim,4183667,1407,770)
+{
+ Delimiter="\"
+ Str2="Vivaldi\User Data\Default\Cookies"
+ link(onStrCatDlm,6349224:doDelete,[(1451,776)(1451,793)(1455,793)(1455,790)])
+ link(Str1,8236425:RData,[(1413,758)(1378,758)(1378,814)(1343,814)])
+}
+Add(HubEx,10327707,1358,812)
+{
+ Angle=2
+}
+Add(LED,9005379,1239,771)
+{
+ Left=555
+ Top=190
+ ColorOn=65280
+ ColorOff=8421376
+}
+Add(LED,15822851,1241,832)
+{
+ Left=555
+ Top=220
+ ColorOn=65280
+ ColorOff=8421376
+}
+Add(Registry,16380166,1351,833)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="AppData"
+ link(onRead,6644326:doStrCatDlm,[])
+}
+Add(StrCatDelim,6644326,1400,833)
+{
+ Delimiter="\"
+ Str2="Opera\Opera\cookies4.dat"
+ link(onStrCatDlm,4097771:doDelete,[(1444,839)(1444,853)])
+}
+Add(DirTools,4097771,1456,833)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ link(onOK,15822851:doOn,[(1500,839)(1500,845)(1229,845)(1229,852)])
+ link(Source,6644326:Result,[(1462,821)(1434,821)(1434,877)(1406,877)])
+}
+Add(LED,14971322,1245,891)
+{
+ Left=555
+ Top=250
+ ColorOn=65280
+ ColorOff=8421376
+}
+Add(DirTools,11918538,1484,910)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ link(onOK,14971322:doOn,[(1528,916)(1528,914)(1233,914)(1233,911)])
+}
+Add(Registry,10890540,1358,910)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="AppData"
+ link(onRead,10759291:doStrCatDlm,[])
+}
+Add(StrCatDelim,10759291,1428,910)
+{
+ Delimiter="\"
+ Str2="Opera Software\Opera Stable\Cookies"
+ link(onStrCatDlm,11918538:doDelete,[(1472,916)(1472,933)(1476,933)(1476,930)])
+ link(Str1,10890540:RData,[(1434,898)(1399,898)(1399,954)(1364,954)])
+}
+Add(FileSearch,9214013,987,105)
+{
+ Include=2
+ Point(onOtherFiles)
+ link(onSearch,16047962:doGetSize,[(1027,111)(1027,139)])
+ link(Dir,14324752:RData,[(1000,93)(937,93)])
+}
+Add(DirTools,16047962,1036,112)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ Point(doGetSize)
+ link(onOK,4934103:doData,[])
+}
+Add(Registry,14324752,931,112)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Cookies"
+ link(onRead,9214013:doSearch,[(968,118)(968,111)])
+}
+Add(FileSearch,10174801,987,238)
+{
+ Include=2
+ Point(onOtherFiles)
+ link(onSearch,12857370:doGetSize,[(1035,244)(1035,307)])
+ link(Dir,2140315:RData,[(1000,282)(937,282)])
+}
+Add(DirTools,12857370,1050,280)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ Point(doGetSize)
+ link(onOK,6001621:doData,[])
+}
+Add(Registry,2140315,931,217)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Recent"
+ link(onRead,10174801:doSearch,[(982,223)(982,244)])
+}
+Add(DirTools,14834692,1015,504)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ Point(doGetSize)
+ link(onOK,6356805:doData,[])
+}
+Add(Registry,6367624,938,413)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,7764829:doStrCatDlm,[])
+}
+Add(StrCatDelim,7764829,1008,413)
+{
+ Delimiter="\"
+ Str2="Google\Chrome\User Data\Default\Cookies"
+ link(onStrCatDlm,14834692:doGetSize,[(1052,419)(1052,475)(1003,475)(1003,531)])
+ link(Str1,6367624:RData,[(1014,401)(979,401)(979,457)(944,457)])
+}
+Add(HubEx,6597595,959,455)
+{
+ Angle=2
+}
+Add(Registry,4514549,868,588)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="AppData"
+ link(onRead,7138118:doStrCatDlm,[])
+}
+Add(DirTools,4775340,1085,595)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ Point(doGetSize)
+ link(onOK,5181804:doData,[])
+ link(Source,14476222:Result,[(1091,583)(1067,583)(1067,639)(1042,639)])
+}
+Add(FileSearch,6428482,973,595)
+{
+ SubDir=1
+ Include=2
+ Point(onOtherFiles)
+ link(onSearch,14476222:doStrCatDlm,[])
+ link(Ext,7138118:Result,[(979,583)(951,583)(951,632)(923,632)])
+}
+Add(StrCatDelim,7138118,917,588)
+{
+ Delimiter="\"
+ Str2="Mozilla\Firefox\Profiles"
+ link(onStrCatDlm,6428482:doSearch,[(961,594)(961,601)])
+ link(Str1,4514549:RData,[(923,576)(899,576)(899,632)(874,632)])
+}
+Add(StrCatDelim,14476222,1036,595)
+{
+ Delimiter="\"
+ Str2="cookies.sqlite"
+ link(onStrCatDlm,4775340:doGetSize,[(1076,601)(1076,622)])
+}
+Add(DirTools,13726730,1064,679)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ Point(doGetSize)
+ link(onOK,1186036:doData,[])
+}
+Add(Registry,14787398,938,679)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,1733705:doStrCatDlm,[])
+}
+Add(StrCatDelim,1733705,1008,679)
+{
+ Delimiter="\"
+ Str2="Yandex\YandexBrowser\User Data\Default\Cookies"
+ link(onStrCatDlm,13726730:doGetSize,[(1052,685)(1052,706)])
+ link(Str1,14787398:RData,[(1014,667)(979,667)(979,723)(944,723)])
+}
+Add(DirTools,5984636,1071,763)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ Point(doGetSize)
+ link(onOK,10858092:doData,[])
+}
+Add(Registry,11148332,945,763)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="Local AppData"
+ link(onRead,4537636:doStrCatDlm,[])
+}
+Add(StrCatDelim,4537636,1015,763)
+{
+ Delimiter="\"
+ Str2="Vivaldi\User Data\Default\Cookies"
+ link(onStrCatDlm,5984636:doGetSize,[(1059,769)(1059,790)])
+ link(Str1,11148332:RData,[(1021,751)(986,751)(986,807)(951,807)])
+}
+Add(Registry,6583177,959,833)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="AppData"
+ link(onRead,11774688:doStrCatDlm,[])
+}
+Add(StrCatDelim,11774688,1008,833)
+{
+ Delimiter="\"
+ Str2="Opera\Opera\cookies4.dat"
+ link(onStrCatDlm,670936:doGetSize,[(1052,839)(1052,860)])
+}
+Add(DirTools,670936,1064,833)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ Point(doGetSize)
+ link(onOK,10950892:doData,[])
+ link(Source,11774688:Result,[(1070,821)(1042,821)(1042,877)(1014,877)])
+}
+Add(DirTools,6723844,1092,896)
+{
+ NoConfirmation=1
+ NoErrorUI=1
+ Point(doGetSize)
+ link(onOK,16398620:doData,[])
+}
+Add(Registry,6373763,966,896)
+{
+ HKey=1
+ Key="Software\Microsoft\Windows\CurrentVersion\Explorer\Shell Folders"
+ Value="AppData"
+ link(onRead,8873522:doStrCatDlm,[])
+}
+Add(StrCatDelim,8873522,1036,896)
+{
+ Delimiter="\"
+ Str2="Opera Software\Opera Stable\Cookies"
+ link(onStrCatDlm,6723844:doGetSize,[(1080,902)(1080,923)])
+ link(Str1,6373763:RData,[(1042,884)(1007,884)(1007,940)(972,940)])
+}
+Add(EventFromData,6001621,1092,280)
+{
+}
+Add(EventFromData,6356805,1057,504)
+{
+}
+Add(EventFromData,5181804,1127,595)
+{
+}
+Add(EventFromData,1186036,1113,679)
+{
+}
+Add(EventFromData,10858092,1113,763)
+{
+}
+Add(EventFromData,10950892,1106,833)
+{
+}
+Add(EventFromData,16398620,1141,896)
+{
+}
+Add(Math,12510355,1141,112)
+{
+ link(onResult,14385783:doOperation,[(1185,118)(1185,202)(1129,202)(1129,286)])
+ link(Op2,6001621:GetData,[(1154,100)(1126,100)(1126,324)(1098,324)])
+}
+Add(Math,14385783,1141,280)
+{
+ link(onResult,12664530:doOperation,[(1185,286)(1185,398)(1094,398)(1094,510)])
+ link(Op2,6356805:GetData,[(1154,268)(1108,268)(1108,548)(1063,548)])
+}
+Add(Math,12664530,1106,504)
+{
+ link(onResult,1883917:doOperation,[(1154,510)(1154,601)])
+ link(Op2,5181804:GetData,[(1119,492)(1126,492)(1126,639)(1133,639)])
+}
+Add(Math,1883917,1169,595)
+{
+ link(onResult,6564984:doOperation,[(1213,601)(1213,643)(1150,643)(1150,685)])
+ link(Op2,1186036:GetData,[(1182,583)(1150,583)(1150,723)(1119,723)])
+}
+Add(Math,6564984,1162,679)
+{
+ link(onResult,3276001:doOperation,[(1206,685)(1206,727)(1150,727)(1150,769)])
+ link(Op2,10858092:GetData,[(1175,667)(1147,667)(1147,807)(1119,807)])
+}
+Add(Math,3276001,1162,763)
+{
+ link(onResult,4309397:doOperation,[(1206,769)(1206,804)(1136,804)(1136,839)])
+ link(Op2,10950892:GetData,[(1175,751)(1143,751)(1143,877)(1112,877)])
+}
+Add(Math,4309397,1148,833)
+{
+ link(onResult,10388341:doOperation,[(1195,839)(1195,974)(758,974)(758,881)])
+ link(Op2,16398620:GetData,[(1161,821)(1154,821)(1154,940)(1147,940)])
+}
+Add(EventFromData,4934103,1085,112)
+{
+}
+Add(Math,8007184,1134,42)
+{
+ link(onResult,12510355:doOperation,[(1178,48)(1178,83)(1129,83)(1129,118)])
+ link(Op2,4934103:GetData,[(1147,30)(1119,30)(1119,156)(1091,156)])
+}
+Add(Label,12918563,1442,14)
+{
+ Left=485
+ Top=10
+ Width=93
+ Height=17
+ Font=[MS Sans Serif,8,0,16711680,1]
+ Caption="http://lionovsky.us"
+ Alignment=1
+ link(onClick,3267635:doShellExec,[(1490,20)(1490,27)])
+}
+Add(WinExec,3267635,1505,14)
+{
+ FileName="http://lionovsky.us"
+}
+Add(ChildFormEx,4160519,119,28)
+{
+}
+BEGIN_SDK
+  Add(EditMultiEx,6232060,21,21)
+  {
+   Width=286
+   Height=172
+  }
+  Add(MainForm,9612779,35,105)
+  {
+   Left=35
+   Top=105
+   Height=371
+  }
+  Add(FileSearch,3333192,140,238)
+  {
+   Ext="*.tmp"
+   Dir="C:\"
+   link(onSearch,1518080:doAdd,[(244,244)(244,307)])
+   link(onEndSearch,8403642:doClose1234,[(317,251)(317,272)])
+  }
+  Add(BitBtn,11414039,0,238)
+  {
+   Left=5
+   Top=255
+   Width=365
+   Name="delGoog"
+   Caption="Поиск файлов"
+   link(onClick,16614070:doEvent1,[])
+  }
+  Add(ListBox,1518080,315,301)
+  {
+   Left=10
+   Top=10
+   Width=360
+   Height=235
+  }
+  Add(ChildFormEx,8403642,462,224)
+  {
+  }
+  BEGIN_SDK
+    Add(EditMultiEx,5349981,21,21)
+    {
+     WorkCount=#7:doClose|9:doRestore|8:doClose1|9:doVisible|9:doCaption|10:doVisible1|11:doClose1234|
+     DataCount=#10:doCaption1|10:doCaption2|
+     link(doVisible1,5555745:doVisible,[(42,62)(42,97)])
+     link(doClose1234,5555745:doClose,[(42,69)(42,90)])
+    }
+    Add(MainForm,5555745,63,63)
+    {
+     Left=35
+     Top=105
+     Width=388
+     Height=107
+     Visible=1
+     Enabled=1
+     Point(doVisible)
+    }
+    Add(Label,15555214,133,84)
+    {
+     Left=10
+     Top=10
+     Width=630
+     Height=52
+     Caption="Идёт процесс поиска временнх файлов на вашем системном диске...\r\n\r\nПрограмма может не отвечать в течении 5-10 минут."
+     AutoSize=1
+    }
+  END_SDK
+  Add(MT_Add,12451672,77,238)
+  {
+   link(onAdd,3333192:doSearch,[])
+  }
+  Add(MT_Add,15654754,77,287)
+  {
+   link(onAdd,8403642:doVisible1,[(285,293)(285,265)])
+  }
+  Add(Hub,16614070,49,238)
+  {
+   OutCount=3
+   link(onEvent1,12451672:doAdd,[])
+   link(onEvent2,15654754:doAdd,[(70,251)(70,293)])
+   link(onEvent3,8950543:doAdd,[(70,258)(70,342)])
+  }
+  Add(MT_Add,8950543,77,336)
+  {
+  }
+END_SDK
